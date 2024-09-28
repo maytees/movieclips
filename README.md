@@ -1,3 +1,7 @@
+> [!NOTE]  
+> Much of this codebase is literally just the Tiktok template from Remotion
+> The part which I configured is adding titles, and the automation part via ffmpeg...
+
 # How to run
 
 1. Download movie (preferabbly legally)
