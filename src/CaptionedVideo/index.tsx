@@ -1,3 +1,4 @@
+import {getVideoMetadata} from '@remotion/media-utils';
 import {useCallback, useEffect, useState} from 'react';
 import {
 	AbsoluteFill,
@@ -12,10 +13,12 @@ import {
 	watchStaticFile,
 } from 'remotion';
 import {z} from 'zod';
-import Subtitle from './Subtitle';
-import {getVideoMetadata} from '@remotion/media-utils';
 import {loadFont} from '../load-font';
 import {NoCaptionFile} from './NoCaptionFile';
+import Subtitle from './Subtitle';
+
+import React from 'react';
+import Title from './Title';
 
 export type SubtitleProp = {
 	startInSeconds: number;
@@ -29,7 +32,7 @@ export const captionedVideoSchema = z.object({
 export const calculateCaptionedVideoMetadata: CalculateMetadataFunction<
 	z.infer<typeof captionedVideoSchema>
 > = async ({props}) => {
-	const fps = 30;
+	const fps = 60;
 	const metadata = await getVideoMetadata(props.src);
 
 	return {
@@ -84,7 +87,7 @@ export const CaptionedVideo: React.FC<{
 	}, [fetchSubtitles, src, subtitlesFile]);
 
 	return (
-		<AbsoluteFill style={{backgroundColor: 'white'}}>
+		<AbsoluteFill style={{backgroundColor: 'black'}}>
 			<AbsoluteFill>
 				<OffthreadVideo
 					style={{
@@ -93,6 +96,7 @@ export const CaptionedVideo: React.FC<{
 					src={src}
 				/>
 			</AbsoluteFill>
+			<Title text="Johnny buys a laptop" />
 			{subtitles.map((subtitle, index) => {
 				const nextSubtitle = subtitles[index + 1] ?? null;
 				const subtitleStartFrame = subtitle.startInSeconds * fps;
