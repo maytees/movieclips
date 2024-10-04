@@ -4,7 +4,7 @@
 
 # How to run
 
-1. Download movie (preferabbly legally)
+1. Download movie (preferably legally)
 2. Put movie mp4 in `/public`
 3. Find start and end timestamps that you wish to "clip"
 4. Chnage the title of the video in `src/CaptionedVideo/index.tsx` (should probably add config for this.)
